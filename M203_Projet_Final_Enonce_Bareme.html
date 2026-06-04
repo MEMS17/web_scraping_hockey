@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang=fr><head><meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>M203 · Projet final — Lancement</title>
+<style>
+:root{--bg:#0B1220;--surface:#0F1740;--gold:#D4AF37;--ink:#E6E8EF;--muted:#9aa3b2;--line:#22305c;--ok:#34d399}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:40px 24px 100px}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+h1{font-family:Montserrat,sans-serif;font-size:28px;margin:6px 0}
+.meta{color:var(--muted);font-size:14px}
+.bar{height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:3px;margin:14px 0 24px}
+h2{font-family:Montserrat,sans-serif;font-size:20px;margin:32px 0 8px;border-left:4px solid var(--gold);padding-left:12px}
+h3{font-family:Montserrat,sans-serif;font-size:16px;color:var(--gold);margin:16px 0 4px}
+.ctx{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:8px 0}
+.ctx b{color:var(--gold)}
+.subj{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.subj .tag{display:inline-block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#0a1230;background:var(--gold);border-radius:20px;padding:2px 10px;font-weight:700;margin-bottom:6px}
+.subj .free{background:var(--ok)}
+ul{margin:8px 0;padding-left:0;list-style:none}
+ul li{margin:6px 0;padding-left:18px;position:relative}
+ul li::before{content:"›";position:absolute;left:0;color:var(--gold)}
+code{background:#0a1230;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px}
+.note{border-left:3px solid var(--gold);background:rgba(212,175,55,.08);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#0a1230;color:var(--gold);font-family:Montserrat,sans-serif}
+td.pts{text-align:center;font-weight:800;color:var(--gold);white-space:nowrap}
+.tot td{font-weight:800}
+.foot{margin-top:36px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+</style></head>
+<body><div class=wrap>
+
+<div class=kick>M203 · Web Scraping · Projet de fin de module</div>
+<h1>Projet final — collecter, pour de vrai</h1>
+<div class=meta>NEEKOCODE · Formation IPSSI · lancement J4 après-midi · soutenances J5 après-midi</div>
+<div class=bar></div>
+
+<div class=ctx><b>L'esprit.</b> Toute la semaine, on a appris à <b>décider</b> : quel barreau de l'échelle, quel outil, quel risque.
+Le projet n'est pas un exercice de plus — c'est l'épreuve où tu prouves que tu sais <b>choisir un régime et le défendre</b>.
+On ne notera pas « ça tourne ». On notera <b>les décisions que tu assumes</b> et la <b>résilience</b> de ta collecte.</div>
+
+<h2>Cadre</h2>
+<ul>
+<li><b>Groupes</b> : binôme ou trinôme.</li>
+<li><b>Sujets</b> : 2 sujets imposés (ci-dessous) <b>ou</b> 1 sujet libre, à me faire valider en recon clinic.</li>
+<li><b>Cibles reproductibles uniquement</b> : aucune cible protégée par un mur anti-bot (jamais de note qui dépend d'un blocage).</li>
+<li><b>Calendrier</b> : recon clinic + build (J4 PM) → build en autonomie (J5 matin) → soutenances (J5 PM, ~15 min + ~10 min Q&amp;A).</li>
+<li><b>LLM</b> : bonus, jamais obligatoire. Outils no-code : <b>interdits comme livrable</b>.</li>
+</ul>
+
+<h2>Sujet 1 — Veille citations &amp; auteurs</h2>
+<div class=subj>
+<span class=tag>Imposé · décision API / rendu JS</span>
+<p><b>Cible :</b> <code>quotes.toscrape.com</code> et ses variantes (<code>/</code> statique, <code>/js</code> rendu JavaScript, <code>/scroll</code> scroll infini, <code>/search</code> en POST).</p>
+<p><b>Mission :</b> collecter <b>toutes</b> les citations (texte, auteur, tags) + la <b>bio de chaque auteur</b> (page détail), stocker en base, de façon résiliente et idempotente.</p>
+<h3>Le sel du sujet</h3>
+<ul>
+<li>Tu dois <b>choisir par quelle porte entrer</b> et le défendre : réflexe API cachée derrière <code>/scroll</code> (barreau 1) ? Playwright sur <code>/js</code> (barreau 3) ? httpx+BS4 sur le statique (barreau 2) ?</li>
+<li>Pas de Scrapy attendu ici : c'est un sujet de <b>décision</b> et de rendu.</li>
+<li><b>Bonus LLM</b> : catégoriser/tagger automatiquement les citations par thème.</li>
+</ul>
+</div>
+
+<h2>Sujet 2 — Collecte industrielle d'un palmarès sportif</h2>
+<div class=subj>
+<span class=tag>Imposé · Scrapy &amp; résilience</span>
+<p><b>Cible :</b> <code>scrapethissite.com/pages/forms/</code> (Hockey Teams) — ~580 équipes sur ~24 pages paginées, avec un formulaire de recherche/filtre.</p>
+<p><b>Mission :</b> un <b>projet Scrapy</b> propre (spider + items + pipeline + settings) qui collecte tout le palmarès (équipe, année, victoires, défaites, % de victoires…), le stocke en base, et <b>tient en production</b> : politesse, retries, idempotence (relançable chaque nuit sans doublon).</p>
+<h3>Le sel du sujet</h3>
+<ul>
+<li>Volume + pagination + robustesse = le terrain où <b>Scrapy se justifie</b> (les deux critères vus en J3).</li>
+<li>Exploiter le <b>formulaire</b> pour filtrer (ex. par saison).</li>
+<li><b>Bonus</b> : la section <code>/pages/ajax-javascript/</code> (Oscars) est en AJAX → applique le réflexe API cachée dessus.</li>
+<li><b>Bonus LLM</b> : normaliser/enrichir des champs hétérogènes.</li>
+</ul>
+</div>
+
+<h2>Sujet 3 — Libre (à valider)</h2>
+<div class=subj>
+<span class="tag free">Au choix · validé en recon clinic</span>
+<p>Ta propre cible, sous réserve de validation par moi via <b>3 questions go/no-go</b> :</p>
+<ul>
+<li><b>Régime identifiable ?</b> Sais-tu dire quel barreau elle exige (et pourquoi) ?</li>
+<li><b>Reproductible ?</b> La cible répond pour tout le monde, sans mur anti-bot ?</li>
+<li><b>Cadrée ?</b> Le périmètre est faisable en ~1,5 jour, sans dérive ?</li>
+</ul>
+</div>
+
+<h2>Contraintes techniques (communes)</h2>
+<ul>
+<li>Environnement géré avec <b>uv</b> ; dépendances déclarées (<code>requirements.txt</code> ou <code>pyproject.toml</code>).</li>
+<li><b>Stockage en base</b> (SQLite minimum) avec <b>idempotence</b> : relancer la collecte ne crée pas de doublons.</li>
+<li><b>Résilience</b> : politesse (délai/UA), retries sur erreurs transitoires, gestion d'erreurs propre.</li>
+<li><b>Structure du code</b> :
+  <ul>
+  <li>Sujets 1 &amp; libre (script) : <code>app.py</code> (point d'entrée) + <code>utiles.py</code> (fetch / parse / store réutilisables) + un module BDD.</li>
+  <li>Sujet 2 (Scrapy) : structure de projet Scrapy (comme le TP3) — spider, items, pipelines, settings.</li>
+  </ul>
+</li>
+<li><b>Repo GitHub</b> : commits réguliers, <b>au moins 1 commit par membre</b>.</li>
+<li><b>README qui DÉFEND les décisions</b> (le cœur de la note) : quel barreau et <b>pourquoi pas celui du dessus</b>, ce que la recon a montré, choix de résilience, lecture du <code>robots.txt</code>, remarque RGPD, alternatives écartées.</li>
+<li>Si LLM utilisé : <b>tool use + validation</b> de la sortie (jamais en aveugle).</li>
+</ul>
+
+<h2>Recon clinic (J4 après-midi) — le passage obligé</h2>
+<div class=note><b>Aucune ligne de code avant ce feu vert.</b> Chaque groupe vient me présenter SA cible et son régime. C'est le moment qui sauve les projets : on évite de coder 3 h sur la mauvaise approche.</div>
+<ul>
+<li><b>DevTools → Network</b> : y a-t-il une API qui sert la donnée ? (barreau 1)</li>
+<li><b>view-source</b> : la donnée est-elle dans le HTML d'origine ? (statique → barreau 2)</li>
+<li><b>Test de blocage</b> : la cible répond-elle proprement à une requête polie ? (pas de mur)</li>
+<li>Sujet libre : les <b>3 questions go/no-go</b> ci-dessus.</li>
+</ul>
+
+<h2>Barème /20 (pondéré)</h2>
+<table>
+<tr><th>Critère</th><th>Ce qu'on regarde</th><th style="text-align:center">Pts</th></tr>
+<tr><td>Collecte fonctionnelle &amp; complète</td><td>Le périmètre annoncé est bien collecté, sortie exploitable</td><td class=pts>4</td></tr>
+<tr><td>Stockage &amp; idempotence</td><td>Base propre, relancer 2× ne duplique pas</td><td class=pts>3</td></tr>
+<tr><td>Résilience</td><td>Politesse, retries, gestion d'erreurs — la collecte ne casse pas au moindre incident</td><td class=pts>3</td></tr>
+<tr><td>Décisions défendues (README)</td><td>Barreau choisi, pourquoi pas le dessus, recon, robots/RGPD, alternatives écartées</td><td class=pts>5</td></tr>
+<tr><td>Qualité code &amp; repo</td><td>Structure claire, lisibilité, commits réguliers (≥1/membre)</td><td class=pts>2</td></tr>
+<tr><td>Soutenance</td><td>Défense des choix, démo qui tourne, clarté, Q&amp;A</td><td class=pts>3</td></tr>
+<tr class=tot><td colspan=2>Total</td><td class=pts>/20</td></tr>
+</table>
+<div class=note><b>Où se gagne la note :</b> 8 points sur 20 portent sur les <b>décisions</b> (README) et la <b>soutenance</b>. Un projet qui tourne mais ne défend rien plafonne ; un projet imparfait mais lucide sur ses choix monte.</div>
+
+<h2>Soutenance (J5 après-midi) — ~15 min + ~10 min Q&amp;A</h2>
+<h3>Attendu de la présentation</h3>
+<ul>
+<li>La cible et le <b>régime choisi</b> — et surtout <b>pourquoi</b> (quel barreau, pourquoi pas celui du dessus).</li>
+<li>Une <b>démo qui tourne</b> (même partielle).</li>
+<li>La <b>résilience</b> démontrée (relance idempotente, comportement face à une erreur).</li>
+<li>Limites connues + ce que vous feriez avec une semaine de plus.</li>
+</ul>
+<h3>Questions types du jury (pour vous préparer)</h3>
+<ul>
+<li>« Et si le site changeait de structure demain — votre collecte tient ou casse ? »</li>
+<li>« Pourquoi ce barreau et pas celui du dessus / du dessous ? »</li>
+<li>« Comment savez-vous que vous n'avez pas de doublons en base ? »</li>
+<li>« Qu'avez-vous lu dans le robots.txt ? Une question RGPD sur ces données ? »</li>
+</ul>
+
+<div class=foot>NEEKOCODE · Formation IPSSI · M203 · Projet final. Travail en groupe ; le README et la soutenance doivent refléter VOS décisions.</div>
+</div></body></html>
