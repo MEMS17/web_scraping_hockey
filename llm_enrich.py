@@ -270,6 +270,10 @@ def main():
         year = row[1]
         print(f"Enrichissement : {team_name} ({year})")
         payload = enrich_row(api_key, args.model, row)
+        print(f"  Nom normalisé : {payload['canonical_team_name']}")
+        print(f"  Ville/région : {payload['city_or_region']}")
+        print(f"  Surnom : {payload['nickname']}")
+        print(f"  Synthèse : {payload['performance_note_fr']}")
         save_payload(conn, team_name, year, payload, args.model)
 
     conn.close()
